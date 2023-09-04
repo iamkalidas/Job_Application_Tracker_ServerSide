@@ -3,6 +3,8 @@ package com.sensei.jobAppTrack.service;
 import com.sensei.jobAppTrack.Repository.JobApplicationRepository;
 import com.sensei.jobAppTrack.entity.JobApplication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,5 +55,10 @@ public class JobApplicationService {
     // Delete a job application by ID
     public void deleteApplication(int id) {
         applicationRepository.deleteById(id);
+    }
+
+    // Get a paginated list of job applications
+    public Page<JobApplication> getPaginatedApplications(Pageable pageable) {
+        return applicationRepository.findAll(pageable);
     }
 }
